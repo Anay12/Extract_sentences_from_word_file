@@ -5,6 +5,7 @@ class ExtractSentences:
         self.sentence_list = []
         self.word_index = {}
         self.doc = Document(filename)
+        self.new_doc = Document()
 
     def create_reverse_index(self):
         for i in range(0, len(self.doc.paragraphs)):
@@ -18,12 +19,12 @@ class ExtractSentences:
                     self.word_index[word] = [i]
 
     def create_new_doc(self, target_word):
-        new_doc = Document()
-        new_doc.add_heading(f"Sentences with the word {target_word}")
+        self.new_doc.add_heading(f"Sentences with the word {target_word}")
 
         line_numbers = self.word_index.get(target_word.lower())
 
         for line_number in line_numbers:
-            new_doc.add_paragraph(self.doc.paragraphs[line_number].text)
+            self.new_doc.add_paragraph(self.doc.paragraphs[line_number].text)
 
-        new_doc.save(f"Sentences with the word {target_word}.docx")
+    def save_new_doc(self, target_word):
+        self.new_doc.save(f"{target_word}.docx")
