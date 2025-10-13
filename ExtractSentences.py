@@ -11,7 +11,9 @@ class ExtractSentences:
         for i in range(0, len(self.doc.paragraphs)):
             line = self.doc.paragraphs[i].text
 
-            line_list = line.lower().split()
+            line = re.sub(r'[^\w\s]', '', line)
+            line_list = [word.lower() for word in line.split()]
+
             for word in line_list:
                 if self.word_index.get(word):
                     self.word_index[word].append(i)
