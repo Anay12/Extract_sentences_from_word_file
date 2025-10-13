@@ -1,5 +1,5 @@
 from ExtractSentences import ExtractSentences
-
+from ConvertDocxToDoc import convert_docx_to_doc
 
 if __name__ == '__main__':
     continue_bool = 'Yes'
@@ -14,4 +14,5 @@ if __name__ == '__main__':
         extractSentences.create_new_doc(word)
 
     extractSentences.save_new_doc(search_words)
+    # convert_docx_to_doc(f"{search_words}.docx", f"{search_words}.doc")
         # continue_bool = input("Do you want to continue: ")
