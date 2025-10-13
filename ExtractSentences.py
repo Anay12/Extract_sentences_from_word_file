@@ -18,7 +18,7 @@ class ExtractSentences:
                 if self.word_index.get(word):
                     self.word_index[word].append(i)
                 else:
-                    self.word_index[word] = [i]
+                    self.redis_client.set(word, json.dumps([i]))
 
     def create_new_doc(self, target_word):
         self.new_doc.add_heading(f"Sentences with the word {target_word}")
